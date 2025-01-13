@@ -41,9 +41,9 @@ app.add_middleware(
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 # Ruta para el favicon
-@app.get("/favicon.ico")
+@app.get("/icono.ico")
 async def favicon():
-    return FileResponse("static/favicon.ico")
+    return FileResponse("static/icono.ico")
 
 # Modelo de mensaje
 class Message(BaseModel):
