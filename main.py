@@ -83,24 +83,27 @@ def ask(message: Message):
     'reservas': """
     📅 Si deseas hacer una reserva, sigue estos pasos:
 
-    1. Inicia sesión con tu correo en la sección de Login.
-    2. Selecciona un salón disponible de los dos que ofrecemos.
-    3. Haz clic en el botón flotante para ver el calendario con las reservas disponibles.
-    4. Haz clic en 'Reservar Aquí' para elegir la fecha y llenar el formulario con tus datos.
-    5. Completa la reserva y ¡listo! 
+    <ol>
+        <li>Inicia sesión con tu correo en la sección de Login.</li>
+        <li>Selecciona un salón disponible de los dos que ofrecemos.</li>
+        <li>Haz clic en el botón flotante para ver el calendario con las reservas disponibles.</li>
+        <li>Haz clic en 'Reservar Aquí' para elegir la fecha y llenar el formulario con tus datos.</li>
+        <li>Completa la reserva y ¡listo!</li>
+    </ol>
 
     Si necesitas cancelar tu reserva, sigue estos pasos:
     
-    1. Selecciona la reserva que deseas cancelar.
-    2. Haz clic en 'Cancelar'.
-    3. Completa los datos y confirma la cancelación.
+    <ol>
+        <li>Selecciona la reserva que deseas cancelar.</li>
+        <li>Haz clic en 'Cancelar'.</li>
+        <li>Completa los datos y confirma la cancelación.</li>
+    </ol>
 
     ¡Es fácil y rápido!
     """,
     'developers': "🛠️ Desarrollado por Johan Sanchez, Kevin Pineda y Juan Manuel Isaza.",
     'contact_info': "📧 Contáctanos en paginaweb@merkahorrosas.com o al 📞 324 5597862."
 }
-
 
         return {"response": responses.get(intent, "🤔 Lo siento, no pude entender tu pregunta. ")}
 
