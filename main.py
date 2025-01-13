@@ -4,6 +4,8 @@ from pydantic import BaseModel
 import requests
 from dotenv import load_dotenv
 import os
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 
 # Cargar variables de entorno
 load_dotenv()
@@ -28,6 +30,14 @@ app.add_middleware(
     allow_methods=["*"],  # Permitir todos los métodos HTTP (GET, POST, etc.)
     allow_headers=["*"],  # Permitir todos los encabezados
 )
+
+# Servir archivos estáticos (incluido el favicon)
+app.mount("/static", StaticFiles(directory="."), name="static")
+
+# Ruta específica para el favicon
+@app.get("/favicon.ico")
+async def favicon():
+    return FileResponse("favicon.ico")
 
 # Token de acceso a Wit.ai desde las variables de entorno
 access_token = os.getenv('WIT_ACCESS_TOKEN')
