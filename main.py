@@ -69,7 +69,7 @@ def ask(message: Message):
         data = response.json()
 
         if not data.get('intents'):
-            return {"response": "🤔 No pude entender tu pregunta. Visita nuestra web para más información."}
+            return {"response": "🤔 Lo siento, no pude entender tu pregunta.Sin embargo, puedo compartir información general sobre la empresa que podría ser útil: Merkahorro es una empresa en crecimiento con planes de expandirse a 12 ubicaciones en toda Colombia para 2026. Nos enfocamos en brindar productos y servicios de alta calidad en nuestros supermercados, con un compromiso con la satisfacción del cliente y el bienestar de los empleados."}
 
         intent = data['intents'][0]['name']
 
@@ -85,7 +85,7 @@ def ask(message: Message):
             'contact_info': "📧 Contáctanos en paginaweb@merkahorrosas.com o al 📞 324 5597862."
         }
 
-        return {"response": responses.get(intent, "🤔 Lo siento, no pude entender tu pregunta.Sin embargo, puedo compartir información general sobre la empresa que podría ser útil: Merkahorro es una empresa en crecimiento con planes de expandirse a 12 ubicaciones en toda Colombia para 2026. Nos enfocamos en brindar productos y servicios de alta calidad en nuestros supermercados, con un compromiso con la satisfacción del cliente y el bienestar de los empleados. ")}
+        return {"response": responses.get(intent, "🤔 Lo siento, no pude entender tu pregunta. ")}
 
     except requests.RequestException as e:
         raise HTTPException(status_code=500, detail=f"Error al conectarse con Wit.ai: {str(e)}")
