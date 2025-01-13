@@ -26,7 +26,7 @@ origins = [
     "http://localhost:5176",
     "http://127.0.0.1:5176",
     "https://construahorrosas.com",
-    "https://www.merkahorro.com"
+    "https://www.merkahorro.com",
     "https://backendpythonbot.vercel.app"
 ]
 
