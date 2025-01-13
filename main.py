@@ -5,9 +5,7 @@ import requests
 from dotenv import load_dotenv
 import os
 from fastapi.staticfiles import StaticFiles
-from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
-
 
 # Cargar variables de entorno
 load_dotenv()
@@ -18,7 +16,7 @@ app = FastAPI()
 # Token de acceso a Wit.ai desde .env
 access_token = os.getenv('WIT_ACCESS_TOKEN')
 if not access_token:
-    raise ValueError("❌ El TOKEN de Wit.ai no está definido en el archivo .env.")
+    raise HTTPException(status_code=500, detail="❌ El TOKEN de Wit.ai no está definido en el archivo .env.")
 
 # Agregar el origen correcto en la configuración de CORS
 origins = [
@@ -64,11 +62,16 @@ def ask(message: Message):
     }
 
     try:
+        # Realizar la solicitud a Wit.ai
         response = requests.get(url, headers=headers)
         response.raise_for_status()  # Validar errores HTTP
 
         data = response.json()
-        intent = data['intents'][0]['name'] if data['intents'] else 'unknown'
+        if not data.get('intents'):  # Verificar si no se detectaron intenciones
+            print(f"Advertencia: No se detectaron intenciones para el mensaje: {message.message}")
+            return {"response": "🤔 No pude entender tu pregunta. Visita nuestra web para más información."}
+        
+        intent = data['intents'][0]['name']
 
         # Respuestas personalizadas
         if intent == 'get_hours':
@@ -90,9 +93,9 @@ def ask(message: Message):
         elif intent == 'contact_info':
             return {"response": "📧 Contáctanos en paginaweb@merkahorrosas.com o al 📞 324 5597862."}
         else:
-            return {"response": "🤔 Lo siento, no pude entender tu pregunta. Visita nuestra web para más información."}
+            return {"response": "🤔 Lo siento, no pude entender tu solicitud. Visita nuestra web para más información."}
 
     except requests.RequestException as e:
-        raise HTTPException(status_code=500, detail=f"Error al conectarse con Wit.ai: {e}")
+        raise HTTPException(status_code=500, detail=f"Error al conectarse con Wit.ai: {str(e)}")
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Ocurrió un error inesperado: {e}")
+        raise HTTPException(status_code=500, detail=f"Ocurrió un error inesperado: {str(e)}")
