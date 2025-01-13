@@ -1,3 +1,4 @@
+
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
@@ -16,24 +17,24 @@ app = FastAPI()
 # Token de acceso a Wit.ai desde .env
 access_token = os.getenv('WIT_ACCESS_TOKEN')
 if not access_token:
-    raise HTTPException(status_code=500, detail="❌ El TOKEN de Wit.ai no está definido en el archivo .env.")
+    raise ValueError("❌ El TOKEN de Wit.ai no está definido en el archivo .env.")
 
-# Agregar el origen correcto en la configuración de CORS
+# Configuración de CORS mejorada
 origins = [
-    "http://localhost:3000",  # Si estás trabajando en local
-    "http://127.0.0.1:3000",  # También para localhost si es diferente
-    "http://localhost:5176",  # Si usas Vite para desarrollo en local
-    "http://127.0.0.1:5176",  # Si usas Vite en localhost
-    "https://construahorrosas.com",  # El dominio de tu frontend en producción
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "http://localhost:5176",
+    "http://127.0.0.1:5176",
+    "https://construahorrosas.com",
+    "https://backendpythonbot.vercel.app"
 ]
 
-# Configuración de CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,  # Permitir estos orígenes
+    allow_origins=origins,
     allow_credentials=True,
-    allow_methods=["*"],  # Permitir todos los métodos HTTP
-    allow_headers=["*"],  # Permitir todos los encabezados
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 # Servir archivos estáticos
@@ -48,7 +49,7 @@ async def favicon():
 class Message(BaseModel):
     message: str
 
-# Ruta principal para validar el servidor
+# Ruta para validar el servidor
 @app.get("/")
 def read_root():
     return {"message": "🚀 Backend del ChatBot de Merkahorro está funcionando correctamente."}
@@ -62,40 +63,31 @@ def ask(message: Message):
     }
 
     try:
-        # Realizar la solicitud a Wit.ai
         response = requests.get(url, headers=headers)
-        response.raise_for_status()  # Validar errores HTTP
-
+        response.raise_for_status()
         data = response.json()
-        if not data.get('intents'):  # Verificar si no se detectaron intenciones
-            print(f"Advertencia: No se detectaron intenciones para el mensaje: {message.message}")
+
+        if not data.get('intents'):
             return {"response": "🤔 No pude entender tu pregunta. Visita nuestra web para más información."}
-        
+
         intent = data['intents'][0]['name']
 
-        # Respuestas personalizadas
-        if intent == 'get_hours':
-            return {"response": "🕒 Estamos abiertos de lunes a sábado de 8:00 AM a 8:00 PM."}
-        elif intent == 'get_locations':
-            return {"response": "📍 Contamos con 8 sedes. Visita nuestra página principal."}
-        elif intent == 'saludo':
-            return {"response": "👋 ¡Hola! ¿En qué puedo ayudarte hoy?"}
-        elif intent == 'trabaja_con_nosotros':
-            return {"response": "💼 Para postularte, visita: https://construahorrosas.com/trabaja-con-nosotros"}
-        elif intent == 'goodbye':
-            return {"response": "👋 ¡Hasta luego! ¡Que tengas un excelente día!"}
-        elif intent == 'promotions':
-            return {"response": "🎉 Consulta nuestras promociones: https://construahorrosas.com/promociones"}
-        elif intent == 'reservas':
-            return {"response": "📅 Inicia sesión y sigue los pasos para realizar una reserva."}
-        elif intent == 'developers':
-            return {"response": "🛠️ Desarrollado por Kevin Pineda, Juan Isaza y Johan Sanchez."}
-        elif intent == 'contact_info':
-            return {"response": "📧 Contáctanos en paginaweb@merkahorrosas.com o al 📞 324 5597862."}
-        else:
-            return {"response": "🤔 Lo siento, no pude entender tu solicitud. Visita nuestra web para más información."}
+        responses = {
+            'get_hours': "🕒 Estamos abiertos de lunes a sábado de 8:00 AM a 8:00 PM.",
+            'get_locations': "📍 Contamos con 8 sedes. Visita nuestra página principal.",
+            'saludo': "👋 ¡Hola! ¿En qué puedo ayudarte hoy?",
+            'trabaja_con_nosotros': "💼 Para postularte, visita: https://construahorrosas.com/trabaja-con-nosotros",
+            'goodbye': "👋 ¡Hasta luego! ¡Que tengas un excelente día!",
+            'promotions': "🎉 Consulta nuestras promociones: https://construahorrosas.com/promociones",
+            'reservas': "📅 Inicia sesión y sigue los pasos para realizar una reserva.",
+            'developers': "🛠️ Desarrollado por Kevin Pineda, Juan Isaza y Johan Sanchez.",
+            'contact_info': "📧 Contáctanos en paginaweb@merkahorrosas.com o al 📞 324 5597862."
+        }
+
+        return {"response": responses.get(intent, "🤔 Lo siento, no pude entender tu solicitud. Visita nuestra web para más información.")}
 
     except requests.RequestException as e:
         raise HTTPException(status_code=500, detail=f"Error al conectarse con Wit.ai: {str(e)}")
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Ocurrió un error inesperado: {str(e)}")
+
