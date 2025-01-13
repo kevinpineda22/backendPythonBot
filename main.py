@@ -5,7 +5,9 @@ import requests
 from dotenv import load_dotenv
 import os
 from fastapi.staticfiles import StaticFiles
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
+
 
 # Cargar variables de entorno
 load_dotenv()
@@ -18,13 +20,22 @@ access_token = os.getenv('WIT_ACCESS_TOKEN')
 if not access_token:
     raise ValueError("❌ El TOKEN de Wit.ai no está definido en el archivo .env.")
 
+# Agregar el origen correcto en la configuración de CORS
+origins = [
+    "http://localhost:3000",  # Si estás trabajando en local
+    "http://127.0.0.1:3000",  # También para localhost si es diferente
+    "http://localhost:5176",  # Si usas Vite para desarrollo en local
+    "http://127.0.0.1:5176",  # Si usas Vite en localhost
+    "https://construahorrosas.com",  # El dominio de tu frontend en producción
+]
+
 # Configuración de CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # ⚠️ Permitir todos los orígenes solo para desarrollo
+    allow_origins=origins,  # Permitir estos orígenes
     allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=["*"],  # Permitir todos los métodos HTTP
+    allow_headers=["*"],  # Permitir todos los encabezados
 )
 
 # Servir archivos estáticos
