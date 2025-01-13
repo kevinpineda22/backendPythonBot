@@ -74,17 +74,17 @@ def ask(message: Message):
 
         responses = {
             'get_hours': "🕒 Estamos abiertos de lunes a sábado de 8:00 AM a 8:00 PM.",
-            'get_locations': "📍 Contamos con 8 sedes. Visita nuestra página principal.",
+            'get_locations': "📍 Contamos con 8 sedes. Si deseas obtener más información sobre cada una de ellas, como la ubicación exacta y el contacto por WhatsApp, te invitamos a visitar nuestra página principal. Allí podrás ver todos los detalles para cada sede.",
             'saludo': "👋 ¡Hola! ¿En qué puedo ayudarte hoy?",
-            'trabaja_con_nosotros': "💼 Para postularte, visita: https://construahorrosas.com/trabaja-con-nosotros",
+            'trabaja_con_nosotros': "💼 Para postularte, mira las vacantes que hay disponibles, luego llena un formulario con tus datos y envianos tu hoja de vida ¡Buena suerte!: https://construahorrosas.com/trabaja-con-nosotros",
             'goodbye': "👋 ¡Hasta luego! ¡Que tengas un excelente día!",
-            'promotions': "🎉 Consulta nuestras promociones: https://construahorrosas.com/promociones",
-            'reservas': "📅 Inicia sesión y sigue los pasos para realizar una reserva.",
-            'developers': "🛠️ Desarrollado por Kevin Pineda, Juan Isaza y Johan Sanchez.",
+            'promotions': "🎉 ¡Tenemos varias promociones increíbles! Para más detalles, visita nuestra página de promociones: https://construahorrosas.com/promociones",
+            'reservas': "📅 1.Inicia sesión con tu correo en la sección de Login. 2.Selecciona un salón disponible de los dos que ofrecemos. 3.Haz clic en el botón flotante para ver el calendario con las reservas disponibles. 4.Haz clic en Reservar Aquí para elegir la fecha y llenar el formulario con tus datos. 5.Completa la reserva y ¡listo!... Si necesitas cancelar, selecciona la reserva y haz clic en Cancelar. Completa los datos y confirma la cancelación.",
+            'developers': "🛠️ Desarrollado por Johan Sanchez, Kevin Pineda y Juan Manuel.",
             'contact_info': "📧 Contáctanos en paginaweb@merkahorrosas.com o al 📞 324 5597862."
         }
 
-        return {"response": responses.get(intent, "🤔 Lo siento, no pude entender tu solicitud. Visita nuestra web para más información.")}
+        return {"response": responses.get(intent, "🤔 Lo siento, no pude entender tu pregunta.Sin embargo, puedo compartir información general sobre la empresa que podría ser útil: Merkahorro es una empresa en crecimiento con planes de expandirse a 12 ubicaciones en toda Colombia para 2026. Nos enfocamos en brindar productos y servicios de alta calidad en nuestros supermercados, con un compromiso con la satisfacción del cliente y el bienestar de los empleados. ")}
 
     except requests.RequestException as e:
         raise HTTPException(status_code=500, detail=f"Error al conectarse con Wit.ai: {str(e)}")
