@@ -62,6 +62,7 @@ def read_root():
 
 # Ruta para procesar los mensajes
 # Respuesta de los horarios organizados
+
 @app.post("/ask")
 def ask(message: Message):
     url = f'https://api.wit.ai/message?v=20220101&q={message.message}'
@@ -81,7 +82,9 @@ def ask(message: Message):
 
         responses = {
             'get_hours': """
-            🕒 Horarios de nuestras sedes:
+            🕒 **Horarios de nuestras sedes:**
+
+            ===============================
 
             **Copacabana Plaza:**
             - **Lunes a Viernes:** 7:00 AM - 8:00 PM
@@ -89,40 +92,56 @@ def ask(message: Message):
             - **Domingos:** 7:00 AM - 5:00 PM
             - **Festivos:** 7:00 AM - 4:00 PM
 
+            ===============================
+
             **Copacabana Las Vegas:**
             - **Lunes a Sábado:** 7:30 AM - 8:30 PM
             - **Domingos:** 7:30 AM - 3:00 PM
             - **Festivos:** 7:30 AM - 3:00 PM
+
+            ===============================
 
             **Copacabana San Juan:**
             - **Lunes a Sábado:** 7:30 AM - 8:30 PM
             - **Domingos:** 7:30 AM - 3:00 PM
             - **Festivos:** 7:30 AM - 3:00 PM
 
+            ===============================
+
             **Girardota Parque:**
             - **Lunes a Sábado:** 7:00 AM - 8:00 PM
             - **Domingos:** 7:00 AM - 4:00 PM
             - **Festivos:** 8:00 AM - 3:00 PM
+
+            ===============================
 
             **Girardota Llano:**
             - **Lunes a Sábado:** 7:00 AM - 8:00 PM
             - **Domingos:** 7:00 AM - 4:00 PM
             - **Festivos:** 8:00 AM - 3:00 PM
 
+            ===============================
+
             **Barbosa:**
             - **Lunes a Sábado:** 7:00 AM - 8:00 PM
             - **Domingos:** 7:00 AM - 4:00 PM
             - **Festivos:** 7:00 AM - 4:00 PM
+
+            ===============================
 
             **Villa Hermosa:**
             - **Lunes a Sábado:** 8:00 AM - 9:00 PM
             - **Domingos:** 8:00 AM - 3:00 PM
             - **Festivos:** 8:00 AM - 3:00 PM
 
+            ===============================
+
             **Carnes Barbosa:**
             - **Lunes a Sábado:** 7:00 AM - 8:00 PM
             - **Domingos:** 7:00 AM - 4:00 PM
             - **Festivos:** 8:00 AM - 4:00 PM
+
+            ===============================
             """,
             'get_locations': "📍 Contamos con 8 sedes. Si deseas obtener más información sobre cada una de ellas, como la ubicación exacta y el contacto por WhatsApp, te invitamos a visitar nuestra página principal. Allí podrás ver todos los detalles para cada sede.",
             'saludo': "👋 ¡Hola! ¿En qué puedo ayudarte hoy?",
