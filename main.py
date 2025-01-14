@@ -56,6 +56,7 @@ def read_root():
     return {"message": "🚀 Backend del ChatBot de Merkahorro está funcionando correctamente."}
 
 # Ruta para procesar los mensajes
+# Respuesta de los horarios organizados
 @app.post("/ask")
 def ask(message: Message):
     url = f'https://api.wit.ai/message?v=20220101&q={message.message}'
@@ -69,41 +70,84 @@ def ask(message: Message):
         data = response.json()
 
         if not data.get('intents'):
-            return {"response": "🤔 Lo siento, no pude entender tu pregunta.Sin embargo, puedo compartir información general sobre la empresa que podría ser útil: Merkahorro es una empresa en crecimiento con planes de expandirse a 12 ubicaciones en toda Colombia para 2026. Nos enfocamos en brindar productos y servicios de alta calidad en nuestros supermercados, con un compromiso con la satisfacción del cliente y el bienestar de los empleados."}
+            return {"response": "🤔 Lo siento, no pude entender tu pregunta. Sin embargo, puedo compartir información general sobre la empresa que podría ser útil: Merkahorro es una empresa en crecimiento con planes de expandirse a 12 ubicaciones en toda Colombia para 2026. Nos enfocamos en brindar productos y servicios de alta calidad en nuestros supermercados, con un compromiso con la satisfacción del cliente y el bienestar de los empleados."}
 
         intent = data['intents'][0]['name']
 
         responses = {
-    'get_hours': "🕒 Estamos abiertos de lunes a sábado de 8:00 AM a 8:00 PM.",
-    'get_locations': "📍 Contamos con 8 sedes. Si deseas obtener más información sobre cada una de ellas, como la ubicación exacta y el contacto por WhatsApp, te invitamos a visitar nuestra página principal. Allí podrás ver todos los detalles para cada sede.",
-    'saludo': "👋 ¡Hola! ¿En qué puedo ayudarte hoy?",
-    'trabaja_con_nosotros': "💼 Para postularte, mira las vacantes que hay disponibles, luego llena un formulario con tus datos y envíanos tu hoja de vida ¡Buena suerte!: https://www.merkahorro.com/trabaja-con-nosotros",
-    'goodbye': "👋 ¡Hasta luego! ¡Que tengas un excelente día!",
-    'promotions': "🎉 ¡Tenemos varias promociones increíbles! Para más detalles, visita nuestra página de promociones: https://www.merkahorro.com/promociones",
-    'reservas': """
-    📅 Si deseas hacer una reserva, sigue estos pasos:
+            'get_hours': """
+            🕒 Horarios de nuestras sedes:
+            
+            **Copacabana Plaza:**
+            - Lunes a Viernes: 7:00 AM - 8:00 PM
+            - Sábados: 6:30 AM - 8:00 PM
+            - Domingos: 7:00 AM - 5:00 PM
+            - Festivos: 7:00 AM - 4:00 PM
+            
+            **Copacabana Las Vegas:**
+            - Lunes a Sábado: 7:30 AM - 8:30 PM
+            - Domingos: 7:30 AM - 3:00 PM
+            - Festivos: 7:30 AM - 3:00 PM
+            
+            **Copacabana San Juan:**
+            - Lunes a Sábado: 7:30 AM - 8:30 PM
+            - Domingos: 7:30 AM - 3:00 PM
+            - Festivos: 7:30 AM - 3:00 PM
+            
+            **Girardota Parque:**
+            - Lunes a Sábado: 7:00 AM - 8:00 PM
+            - Domingos: 7:00 AM - 4:00 PM
+            - Festivos: 8:00 AM - 3:00 PM
+            
+            **Girardota Llano:**
+            - Lunes a Sábado: 7:00 AM - 8:00 PM
+            - Domingos: 7:00 AM - 4:00 PM
+            - Festivos: 8:00 AM - 3:00 PM
+            
+            **Barbosa:**
+            - Lunes a Sábado: 7:00 AM - 8:00 PM
+            - Domingos: 7:00 AM - 4:00 PM
+            - Festivos: 7:00 AM - 4:00 PM
+            
+            **Villa Hermosa:**
+            - Lunes a Sábado: 8:00 AM - 9:00 PM
+            - Domingos: 8:00 AM - 3:00 PM
+            - Festivos: 8:00 AM - 3:00 PM
+            
+            **Carnes Barbosa:**
+            - Lunes a Sábado: 7:00 AM - 8:00 PM
+            - Domingos: 7:00 AM - 4:00 PM
+            - Festivos: 8:00 AM - 4:00 PM
+            """,
+            'get_locations': "📍 Contamos con 8 sedes. Si deseas obtener más información sobre cada una de ellas, como la ubicación exacta y el contacto por WhatsApp, te invitamos a visitar nuestra página principal. Allí podrás ver todos los detalles para cada sede.",
+            'saludo': "👋 ¡Hola! ¿En qué puedo ayudarte hoy?",
+            'trabaja_con_nosotros': "💼 Para postularte, mira las vacantes que hay disponibles, luego llena un formulario con tus datos y envíanos tu hoja de vida ¡Buena suerte!: https://www.merkahorro.com/trabaja-con-nosotros",
+            'goodbye': "👋 ¡Hasta luego! ¡Que tengas un excelente día!",
+            'promotions': "🎉 ¡Tenemos varias promociones increíbles! Para más detalles, visita nuestra página de promociones: https://www.merkahorro.com/promociones",
+            'reservas': """
+            📅 Si deseas hacer una reserva, sigue estos pasos:
 
-    <ol>
-        <li>Inicia sesión con tu correo en la sección de Login.</li>
-        <li>Selecciona un salón disponible de los dos que ofrecemos.</li>
-        <li>Haz clic en el botón flotante para ver el calendario con las reservas disponibles.</li>
-        <li>Haz clic en 'Reservar Aquí' para elegir la fecha y llenar el formulario con tus datos.</li>
-        <li>Completa la reserva y ¡listo!</li>
-    </ol>
+            <ol>
+                <li>Inicia sesión con tu correo en la sección de Login.</li>
+                <li>Selecciona un salón disponible de los dos que ofrecemos.</li>
+                <li>Haz clic en el botón flotante para ver el calendario con las reservas disponibles.</li>
+                <li>Haz clic en 'Reservar Aquí' para elegir la fecha y llenar el formulario con tus datos.</li>
+                <li>Completa la reserva y ¡listo!</li>
+            </ol>
 
-    Si necesitas cancelar tu reserva, sigue estos pasos:
-    
-    <ol>
-        <li>Selecciona la reserva que deseas cancelar.</li>
-        <li>Haz clic en 'Cancelar'.</li>
-        <li>Completa los datos y confirma la cancelación.</li>
-    </ol>
+            Si necesitas cancelar tu reserva, sigue estos pasos:
+            
+            <ol>
+                <li>Selecciona la reserva que deseas cancelar.</li>
+                <li>Haz clic en 'Cancelar'.</li>
+                <li>Completa los datos y confirma la cancelación.</li>
+            </ol>
 
-    ¡Es fácil y rápido!
-    """,
-    'developers': "🛠️ Desarrollado por Johan Sanchez, Kevin Pineda y Juan Manuel Isaza.",
-    'contact_info': "📧 Contáctanos en paginaweb@merkahorrosas.com o al 📞 324 5597862."
-}
+            ¡Es fácil y rápido!
+            """,
+            'developers': "🛠️ Desarrollado por Johan Sanchez, Kevin Pineda y Juan Manuel Isaza.",
+            'contact_info': "📧 Contáctanos en paginaweb@merkahorrosas.com o al 📞 324 5597862."
+        }
 
         return {"response": responses.get(intent, "🤔 Lo siento, no pude entender tu pregunta. ")}
 
@@ -111,4 +155,3 @@ def ask(message: Message):
         raise HTTPException(status_code=500, detail=f"Error al conectarse con Wit.ai: {str(e)}")
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Ocurrió un error inesperado: {str(e)}")
-
