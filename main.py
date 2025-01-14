@@ -1,4 +1,3 @@
-
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
@@ -8,7 +7,6 @@ import os
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 from fastapi.middleware.httpsredirect import HTTPSRedirectMiddleware
-
 
 # Cargar variables de entorno
 load_dotenv()
@@ -61,8 +59,6 @@ def read_root():
     return {"message": "🚀 Backend del ChatBot de Merkahorro está funcionando correctamente."}
 
 # Ruta para procesar los mensajes
-# Respuesta de los horarios organizados
-
 @app.post("/ask")
 def ask(message: Message):
     url = f'https://api.wit.ai/message?v=20220101&q={message.message}'
@@ -82,66 +78,64 @@ def ask(message: Message):
 
         responses = {
             'get_hours': """
-            🕒 **Horarios de nuestras sedes:**
+            <h3>🕒 <strong>Horarios de nuestras sedes:</strong></h3>
 
-            ===============================
+            <div><strong>Copacabana Plaza:</strong></div>
+            <ul>
+                <li>🌞 <strong>Lunes a Viernes:</strong> 7:00 AM - 8:00 PM</li>
+                <li>🌅 <strong>Sábados:</strong> 6:30 AM - 8:00 PM</li>
+                <li>🌙 <strong>Domingos:</strong> 7:00 AM - 5:00 PM</li>
+                <li>🎉 <strong>Festivos:</strong> 7:00 AM - 4:00 PM</li>
+            </ul>
 
-            **Copacabana Plaza:**
-            - **Lunes a Viernes:** 7:00 AM - 8:00 PM
-            - **Sábados:** 6:30 AM - 8:00 PM
-            - **Domingos:** 7:00 AM - 5:00 PM
-            - **Festivos:** 7:00 AM - 4:00 PM
+            <div><strong>Copacabana Las Vegas:</strong></div>
+            <ul>
+                <li>🌞 <strong>Lunes a Sábado:</strong> 7:30 AM - 8:30 PM</li>
+                <li>🌙 <strong>Domingos:</strong> 7:30 AM - 3:00 PM</li>
+                <li>🎉 <strong>Festivos:</strong> 7:30 AM - 3:00 PM</li>
+            </ul>
 
-            ===============================
+            <div><strong>Copacabana San Juan:</strong></div>
+            <ul>
+                <li>🌞 <strong>Lunes a Sábado:</strong> 7:30 AM - 8:30 PM</li>
+                <li>🌙 <strong>Domingos:</strong> 7:30 AM - 3:00 PM</li>
+                <li>🎉 <strong>Festivos:</strong> 7:30 AM - 3:00 PM</li>
+            </ul>
 
-            **Copacabana Las Vegas:**
-            - **Lunes a Sábado:** 7:30 AM - 8:30 PM
-            - **Domingos:** 7:30 AM - 3:00 PM
-            - **Festivos:** 7:30 AM - 3:00 PM
+            <div><strong>Girardota Parque:</strong></div>
+            <ul>
+                <li>🌞 <strong>Lunes a Sábado:</strong> 7:00 AM - 8:00 PM</li>
+                <li>🌙 <strong>Domingos:</strong> 7:00 AM - 4:00 PM</li>
+                <li>🎉 <strong>Festivos:</strong> 8:00 AM - 3:00 PM</li>
+            </ul>
 
-            ===============================
+            <div><strong>Girardota Llano:</strong></div>
+            <ul>
+                <li>🌞 <strong>Lunes a Sábado:</strong> 7:00 AM - 8:00 PM</li>
+                <li>🌙 <strong>Domingos:</strong> 7:00 AM - 4:00 PM</li>
+                <li>🎉 <strong>Festivos:</strong> 8:00 AM - 3:00 PM</li>
+            </ul>
 
-            **Copacabana San Juan:**
-            - **Lunes a Sábado:** 7:30 AM - 8:30 PM
-            - **Domingos:** 7:30 AM - 3:00 PM
-            - **Festivos:** 7:30 AM - 3:00 PM
+            <div><strong>Barbosa:</strong></div>
+            <ul>
+                <li>🌞 <strong>Lunes a Sábado:</strong> 7:00 AM - 8:00 PM</li>
+                <li>🌙 <strong>Domingos:</strong> 7:00 AM - 4:00 PM</li>
+                <li>🎉 <strong>Festivos:</strong> 7:00 AM - 4:00 PM</li>
+            </ul>
 
-            ===============================
+            <div><strong>Villa Hermosa:</strong></div>
+            <ul>
+                <li>🌞 <strong>Lunes a Sábado:</strong> 8:00 AM - 9:00 PM</li>
+                <li>🌙 <strong>Domingos:</strong> 8:00 AM - 3:00 PM</li>
+                <li>🎉 <strong>Festivos:</strong> 8:00 AM - 3:00 PM</li>
+            </ul>
 
-            **Girardota Parque:**
-            - **Lunes a Sábado:** 7:00 AM - 8:00 PM
-            - **Domingos:** 7:00 AM - 4:00 PM
-            - **Festivos:** 8:00 AM - 3:00 PM
-
-            ===============================
-
-            **Girardota Llano:**
-            - **Lunes a Sábado:** 7:00 AM - 8:00 PM
-            - **Domingos:** 7:00 AM - 4:00 PM
-            - **Festivos:** 8:00 AM - 3:00 PM
-
-            ===============================
-
-            **Barbosa:**
-            - **Lunes a Sábado:** 7:00 AM - 8:00 PM
-            - **Domingos:** 7:00 AM - 4:00 PM
-            - **Festivos:** 7:00 AM - 4:00 PM
-
-            ===============================
-
-            **Villa Hermosa:**
-            - **Lunes a Sábado:** 8:00 AM - 9:00 PM
-            - **Domingos:** 8:00 AM - 3:00 PM
-            - **Festivos:** 8:00 AM - 3:00 PM
-
-            ===============================
-
-            **Carnes Barbosa:**
-            - **Lunes a Sábado:** 7:00 AM - 8:00 PM
-            - **Domingos:** 7:00 AM - 4:00 PM
-            - **Festivos:** 8:00 AM - 4:00 PM
-
-            ===============================
+            <div><strong>Carnes Barbosa:</strong></div>
+            <ul>
+                <li>🌞 <strong>Lunes a Sábado:</strong> 7:00 AM - 8:00 PM</li>
+                <li>🌙 <strong>Domingos:</strong> 7:00 AM - 4:00 PM</li>
+                <li>🎉 <strong>Festivos:</strong> 8:00 AM - 4:00 PM</li>
+            </ul>
             """,
             'get_locations': "📍 Contamos con 8 sedes. Si deseas obtener más información sobre cada una de ellas, como la ubicación exacta y el contacto por WhatsApp, te invitamos a visitar nuestra página principal. Allí podrás ver todos los detalles para cada sede.",
             'saludo': "👋 ¡Hola! ¿En qué puedo ayudarte hoy?",
@@ -151,21 +145,21 @@ def ask(message: Message):
             'reservas': """
             📅 Si deseas hacer una reserva, sigue estos pasos:
 
-            <ol>
-                <li>Inicia sesión con tu correo en la sección de Login.</li>
-                <li>Selecciona un salón disponible de los dos que ofrecemos.</li>
-                <li>Haz clic en el botón flotante para ver el calendario con las reservas disponibles.</li>
-                <li>Haz clic en 'Reservar Aquí' para elegir la fecha y llenar el formulario con tus datos.</li>
-                <li>Completa la reserva y ¡listo!</li>
-            </ol>
+            <ul>
+                <li>🔑 Inicia sesión con tu correo en la sección de Login.</li>
+                <li>🏛️ Selecciona un salón disponible de los dos que ofrecemos.</li>
+                <li>📅 Haz clic en el botón flotante para ver el calendario con las reservas disponibles.</li>
+                <li>📝 Haz clic en 'Reservar Aquí' para elegir la fecha y llenar el formulario con tus datos.</li>
+                <li>✅ Completa la reserva y ¡listo!</li>
+            </ul>
 
             Si necesitas cancelar tu reserva, sigue estos pasos:
             
-            <ol>
-                <li>Selecciona la reserva que deseas cancelar.</li>
-                <li>Haz clic en 'Cancelar'.</li>
-                <li>Completa los datos y confirma la cancelación.</li>
-            </ol>
+            <ul>
+                <li>❌ Selecciona la reserva que deseas cancelar.</li>
+                <li>🗑️ Haz clic en 'Cancelar'.</li>
+                <li>✍️ Completa los datos y confirma la cancelación.</li>
+            </ul>
 
             ¡Es fácil y rápido!
             """,
