@@ -7,6 +7,8 @@ from dotenv import load_dotenv
 import os
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
+from fastapi.middleware.httpsredirect import HTTPSRedirectMiddleware
+
 
 # Cargar variables de entorno
 load_dotenv()
@@ -30,12 +32,15 @@ origins = [
     "https://backendpythonbot.vercel.app"
 ]
 
+# Forzar HTTPS (Recomendado en producción)
+app.add_middleware(HTTPSRedirectMiddleware)
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=["*"],  # Permite todas las fuentes (puedes limitarlo en producción)
     allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=["GET", "POST", "OPTIONS"],  # Métodos específicos
+    allow_headers=["*"],  # Todos los headers permitidos
 )
 
 # Servir archivos estáticos
