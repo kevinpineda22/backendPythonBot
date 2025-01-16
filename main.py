@@ -163,7 +163,14 @@ def ask(message: Message):
 
             ¡Es fácil y rápido!
             """,
-            'developers': "🛠️ Desarrollado por Johan Sanchez, Kevin Pineda y Juan Manuel Isaza.",
+             'developers': """
+    🛠️ <strong>Desarrollado por:</strong>
+    <ul>
+        <li>👨‍💻 Johan Sanchez</li>
+        <li>👨‍💻 Kevin Pineda</li>
+        <li>👨‍💻 Juan Manuel Isaza</li>
+    </ul>
+    """,
             'contact_info': "📧 Contáctanos en paginaweb@merkahorrosas.com o al 📞 324 5597862."
         }
 
