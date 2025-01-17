@@ -171,7 +171,17 @@ def ask(message: Message):
         <li>👨‍💻 Juan Manuel Isaza</li>
     </ul>
     """,
-            'contact_info': "📧 Contáctanos en paginaweb@merkahorrosas.com o al 📞 324 5597862."
+            'contact_info': "📧 Contáctanos en paginaweb@merkahorrosas.com o al 📞 324 5597862.",
+
+            'get_social_media': """
+    📱 ¡Sí! Puedes seguirnos en nuestras redes sociales:
+
+    - Instagram: [@merkahorro](https://www.instagram.com/supermercadomerkahorro/?hl=es)
+    - Facebook: [Merkahorro](https://www.facebook.com/supermercadosmerkahorro/?locale=es_LA)
+    - Tiktok: [@merkahorro](https://www.tiktok.com/@supermercadomerkahorro)
+    
+    ¡Síguenos y mantente al tanto de nuestras promociones y novedades!
+    """
         }
 
         return {"response": responses.get(intent, "🤔 Lo siento, no pude entender tu pregunta. ")}
