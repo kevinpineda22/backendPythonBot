@@ -173,15 +173,16 @@ def ask(message: Message):
     """,
             'contact_info': "📧 Contáctanos en paginaweb@merkahorrosas.com o al 📞 324 5597862.",
 
-            'get_social_media': """
-    📱 ¡Sí! Puedes seguirnos en nuestras redes sociales:
+   'get_social_media': """
+🌐 Puedes seguirnos en nuestras redes sociales para estar al tanto de todas nuestras novedades y promociones:
 
-    - Instagram: [@merkahorro](https://www.instagram.com/supermercadomerkahorro/?hl=es)
-    - Facebook: [Merkahorro](https://www.facebook.com/supermercadosmerkahorro/?locale=es_LA)
-    - Tiktok: [@merkahorro](https://www.tiktok.com/@supermercadomerkahorro)
-    
-    ¡Síguenos y mantente al tanto de nuestras promociones y novedades!
-    """
+📸 **Instagram**: (https://www.instagram.com/supermercadomerkahorro/?hl=es)  
+👍 **Facebook**: (https://www.facebook.com/supermercadosmerkahorro/?locale=es_LA)  
+🎵 **TikTok**: (https://www.tiktok.com/@supermercadomerkahorro)
+
+¡Síguenos y mantente informado sobre nuestras promociones, nuevos productos y mucho más! 🎉
+"""
+
         }
 
         return {"response": responses.get(intent, "🤔 Lo siento, no pude entender tu pregunta. ")}
