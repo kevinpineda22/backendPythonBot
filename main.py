@@ -180,6 +180,7 @@ def ask(message: Message):
     <li>📸 <strong>Instagram</strong>: <a href="https://www.instagram.com/supermercadomerkahorro/?hl=es" target="_blank">@merkahorro</a></li>
     <li>👍 <strong>Facebook</strong>: <a href="https://www.facebook.com/supermercadosmerkahorro/?locale=es_LA" target="_blank">Merkahorro</a></li>
     <li>🎵 <strong>TikTok</strong>: <a href="https://www.tiktok.com/@supermercadomerkahorro" target="_blank">@merkahorro</a></li>
+    <li>📺 <strong>YouTube</strong>: <a href="https://www.youtube.com/@Merkahorro" target="_blank">Merkahorro</a></li>
 </ul>
 
 <p>¡Síguenos y mantente informado sobre nuestras promociones, nuevos productos y mucho más! 🎉</p>
