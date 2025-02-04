@@ -166,9 +166,9 @@ def ask(message: Message):
              'developers': """
     🛠️ <strong>Desarrollado por:</strong>
     <ul>
+        <li>👨‍💻 Juan Manuel Isaza</li>
         <li>👨‍💻 Johan Sanchez</li>
         <li>👨‍💻 Kevin Pineda</li>
-        <li>👨‍💻 Juan Manuel Isaza</li>
     </ul>
     """,
             'contact_info': "📧 Contáctanos en paginaweb@merkahorrosas.com o al 📞 324 5597862.",
@@ -185,7 +185,6 @@ def ask(message: Message):
 
 <p>¡Síguenos y mantente informado sobre nuestras promociones, nuevos productos y mucho más! 🎉</p>
 """
-
         }
 
         return {"response": responses.get(intent, "🤔 Lo siento, no pude entender tu pregunta. ")}
