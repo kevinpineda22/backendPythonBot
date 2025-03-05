@@ -142,6 +142,7 @@ def ask(message: Message):
             'trabaja_con_nosotros': "💼 Para postularte, mira las vacantes que hay disponibles, luego llena un formulario con tus datos y envíanos tu hoja de vida ¡Buena suerte!: https://www.merkahorro.com/trabaja-con-nosotros",
             'goodbye': "👋 ¡Hasta luego! ¡Que tengas un excelente día!",
             'promotions': "🎉 ¡Tenemos varias promociones increíbles! Para más detalles, visita nuestra página de promociones: https://www.merkahorro.com/promociones",
+            'como_estas': "¡Hola! Gracias por preguntar, me encuentro muy bien. ¿En qué puedo ayudarte hoy?",
             'reservas': """
             📅 Si deseas hacer una reserva, sigue estos pasos:
 
