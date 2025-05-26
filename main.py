@@ -185,7 +185,19 @@ def ask(message: Message):
 </ul>
 
 <p>¡Síguenos y mantente informado sobre nuestras promociones, nuevos productos y mucho más! 🎉</p>
+""",
+
+'como_llegar': """
+📍 <strong>¿Quieres saber cómo llegar a nuestra sede principal?</strong><br />
+Haz clic en el botón para ver el video con la ruta exacta:
+<br /><br />
+<button onclick="window.dispatchEvent(new CustomEvent('openVideoModal'))"
+        style="padding: 10px 20px; background-color: #ff5722; color: white; border: none; border-radius: 5px; cursor: pointer;">
+Ver Video 📹
+</button>
 """
+
+
         }
 
         return {"response": responses.get(intent, "🤔 Lo siento, no pude entender tu pregunta. ")}
