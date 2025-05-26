@@ -139,7 +139,7 @@ def ask(message: Message):
             """,
             'get_locations': "📍 Contamos con 8 sedes. Si deseas obtener más información sobre cada una de ellas, como la ubicación exacta y el contacto por WhatsApp, te invitamos a visitar nuestra página principal. Allí podrás ver todos los detalles para cada sede.",
             'saludo': "👋 ¡Hola! ¿En qué puedo ayudarte hoy?",
-            'trabaja_con_nosotros': "💼 Para postularte, mira las vacantes que hay disponibles, luego llena un formulario con tus datos y envíanos tu hoja de vida ¡Buena suerte!: https://www.merkahorro.com/trabaja-con-nosotros",
+            'trabaja_con_nosotros': "💼 Para postularte, mira las vacantes que hay disponibles, luego llena un formulario con tus datos ¡Buena suerte!: https://www.merkahorro.com/trabaja-con-nosotros",
             'goodbye': "👋 ¡Hasta luego! ¡Que tengas un excelente día!",
             'promotions': "🎉 ¡Tenemos varias promociones increíbles! Para más detalles, visita nuestra página de promociones: https://www.merkahorro.com/promociones",
             'como_estas': "¡Hola! Gracias por preguntar, me encuentro muy bien. ¿En qué puedo ayudarte hoy?",
