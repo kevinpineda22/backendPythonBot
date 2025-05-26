@@ -189,7 +189,7 @@ def ask(message: Message):
 
 'como_llegar': """
 📍 <strong>¿Quieres saber cómo llegar a nuestra sede principal y cómo es el proceso de entrevista?</strong><br /><br />
-En este video te mostramos paso a paso cómo llegar a nuestras instalaciones y también una vista general de cómo se desarrolla el proceso de entrevista en Merkahorro.
+En este video te mostramos paso a paso cómo llegar a nuestra instalación y también una vista general de cómo se desarrolla el proceso de entrevista en Merkahorro.
 <br /><br />
 <button class="btn-ver-videochatbot" style="padding: 10px 20px; background-color: #ff5722; color: white; border: none; border-radius: 5px; cursor: pointer;">
 Ver Video 📹
